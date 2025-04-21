@@ -2,7 +2,7 @@
 
 A simple, interactive web tool designed for quickly viewing TradingView charts of randomly selected stocks from the S&P 500 index. It's perfect for discovering new stocks or performing rapid visual checks on index components.
 
-**➡️ Try the live version:** https://random-snp-500-stock-explorer.netlify.app ## ✨ Features
+**➡️ Try the live version:** https://random-snp-500-stock-explorer.netlify.app  ✨ Features
 
 * **Random Stock Discovery:** Instantly loads a TradingView chart for a randomly chosen stock within the S&P 500 list.
 * **New Stock Button (🎰):** Easily load a new random stock chart with a single click.
