@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>S&P 500 Stock Explorer 🔎</title>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7EY771DZ8F"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-7EY771DZ8F');
+    </script>
+    <link rel="icon" type="image/png" href="android-chrome-512x512.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <header class="top-bar">
+        <a href="https://market-shuffle.netlify.app/" id="hub-link" target="_blank" rel="noopener noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8h5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+            <span>Hub</span>
+        </a>
+
+        <div class="header-title">S&P 500 Stock Explorer 🔎</div>
+
+        <button id="nav-theme" aria-label="Toggle Theme" title="Toggle Theme">☀️</button>
+    </header>
+
+    <div id="history-sidebar">
+        <div class="sidebar-tabs">
+            <div id="history-tab" class="sidebar-tab active">History</div>
+            <div id="favorites-tab" class="sidebar-tab">Favorites</div>
+        </div>
+        <div class="clear-history-container">
+            <button id="clear-history-btn">Clear History 🗑️</button>
+        </div>
+        <ul id="sidebar-list"></ul>
+    </div>
+
+    <div class="container">
+        <div id="chart-container">
+            </div>
+    </div>
+
+    <div class="bottom-nav-bar">
+        <button id="nav-history" aria-label="Toggle History/Favorites" title="Toggle History/Favorites">📜</button>
+        <button id="nav-load-chart" aria-label="Load Random Chart" title="Load Random Chart">🎰</button>
+        <button id="nav-auto-flip" aria-label="Start Auto-Flip" title="Start Auto-Flip (every 5s)" aria-pressed="false">▶️</button>
+    </div>
+
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <script src="script.js" defer></script>
+</body>
+</html>
