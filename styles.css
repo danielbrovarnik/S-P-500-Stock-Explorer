@@ -1,0 +1,455 @@
+:root { /* CSS Variables */
+    --accent-color-light: #007bff;
+    --accent-color-dark: #1e90ff;
+    --gray-100-light: #f8f9fa;
+    --gray-200-light: #e9ecef;
+    --gray-700-light: #495057;
+    --gray-800-light: #343a40;
+    --gray-100-dark: #495057;
+    --gray-200-dark: #3a3f44; /* Used for dark backgrounds */
+    --gray-700-dark: #ced4da; /* Used for text on dark backgrounds */
+    --gray-800-dark: #e9ecef; /* Used for lighter text on dark */
+}
+html, body { /* Base styles */
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Roboto', Arial, sans-serif;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    overflow-x: hidden;
+    background-color: var(--gray-100-light);
+    color: #212529;
+}
+body.dark-mode {
+    background-color: #2c2f33; /* Slightly different dark bg */
+    color: var(--gray-800-dark);
+}
+
+/* Header */
+header.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    z-index: 300;
+    background-color: #ffffff;
+    color: #212529;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.4s ease, box-shadow 0.4s ease, color 0.4s ease; /* Added color transition */
+}
+body.dark-mode header.top-bar {
+    background-color: var(--gray-200-dark);
+    color: var(--gray-800-dark);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Hub Button */
+#hub-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: var(--gray-200-light);
+    color: var(--gray-800-light);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 50px;
+    transition: background-color 0.25s ease, color 0.25s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    white-space: nowrap;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+#hub-link:hover {
+    background-color: var(--gray-700-light); /* Darker gray on light hover */
+    color: #fff; /* White text */
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+#hub-link:active {
+    transform: translateY(0px);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+#hub-link svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    margin-bottom: 1px;
+}
+body.dark-mode #hub-link {
+    background-color: var(--gray-100-dark);
+    color: var(--gray-700-dark);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+body.dark-mode #hub-link:hover {
+    background-color: var(--gray-700-dark); /* Lighter gray on dark hover */
+    color: var(--gray-200-dark); /* Darker text */
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+}
+body.dark-mode #hub-link:active {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+/* Header Title - Ensure centering */
+.header-title {
+    font-size: 1.4rem;
+    font-weight: 500;
+    user-select: none;
+    flex-grow: 1; /* Allow title to take available space */
+    text-align: center; /* Center text within its space */
+    margin: 0 10px; /* Prevent touching edges */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0; /* Prevent title from pushing buttons out on flex */
+}
+
+/* === START: Theme Toggle Button (in Header) Style === */
+#nav-theme { /* Style for header specifically */
+    background: none;
+    border: none;
+    color: inherit; /* Inherit header text color */
+    font-size: 1.5rem; /* Icon size */
+    cursor: pointer;
+    padding: 6px; /* Click area */
+    margin-left: 5px; /* Space from title */
+    border-radius: 50%; /* Round tap area */
+    line-height: 1; /* Align icon */
+    transition: background-color 0.2s ease;
+}
+#nav-theme:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+body.dark-mode #nav-theme:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+/* === END: Theme Toggle Button Style === */
+
+/* --- Sidebar styles --- */
+#history-sidebar {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    width: 260px;
+    height: calc(100% - 50px - 65px); /* Adjusted for bottom nav */
+    border-right: 1px solid #dee2e6;
+    transform: translateX(-260px);
+    transition: transform 0.35s ease, background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease; /* Added transitions */
+    z-index: 200;
+    padding: 15px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    background: #ffffff;
+    color: var(--gray-800-light);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+}
+body.dark-mode #history-sidebar {
+    background: var(--gray-200-dark);
+    color: var(--gray-700-dark);
+    border-right: 1px solid var(--gray-100-dark);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+}
+#history-sidebar.open {
+    transform: translateX(0);
+}
+.sidebar-tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
+}
+.sidebar-tab {
+    flex: 1;
+    text-align: center;
+    padding: 8px 0;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    font-weight: 500;
+    transition: border-color 0.3s ease, color 0.3s ease;
+    color: #6c757d;
+}
+.sidebar-tab:hover {
+    color: var(--gray-800-light);
+}
+body.dark-mode .sidebar-tab {
+    color: #adb5bd;
+}
+body.dark-mode .sidebar-tab:hover {
+    color: var(--gray-800-dark);
+}
+.sidebar-tab.active {
+    border-color: var(--accent-color-light);
+    color: #212529;
+}
+body.dark-mode .sidebar-tab.active {
+    border-color: var(--accent-color-dark);
+    color: var(--gray-100-light); /* Brighter active text */
+}
+.clear-history-container {
+    text-align: center;
+    margin-bottom: 15px;
+}
+.clear-history-container button {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    color: var(--accent-color-light);
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin: 0 auto;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+.clear-history-container button:hover {
+    background-color: rgba(0, 123, 255, 0.1);
+}
+body.dark-mode .clear-history-container button {
+    color: var(--accent-color-dark);
+}
+body.dark-mode .clear-history-container button:hover {
+    background-color: rgba(30, 144, 255, 0.15);
+}
+#sidebar-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+#sidebar-list li {
+    padding: 10px 8px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--gray-200-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s ease, border-color 0.4s ease; /* Added border color */
+    border-radius: 4px;
+    margin-bottom: 3px;
+}
+#sidebar-list li:hover {
+    background: var(--gray-100-light);
+}
+body.dark-mode #sidebar-list li {
+    border-bottom: 1px solid var(--gray-100-dark);
+}
+body.dark-mode #sidebar-list li:hover {
+    background: var(--gray-100-dark);
+}
+.star {
+    cursor: pointer;
+    font-size: 1.3rem;
+    margin-left: 10px;
+    transition: transform 0.2s ease, color 0.2s ease; /* Added color */
+    user-select: none; /* Prevent text selection */
+}
+.star:hover {
+    transform: scale(1.2);
+}
+
+/* --- Main Content and Chart styles --- */
+.container {
+    margin-top: 50px; /* Space for top bar */
+    padding: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 50px); /* Full height minus top bar */
+    padding-bottom: 80px; /* Space for bottom bar */
+}
+#chart-container {
+    flex: 1; /* Take remaining vertical space */
+    width: 100%;
+    position: relative;
+    background: #ffffff; /* Chart background can be different */
+    border: none; /* Remove border */
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Important for TradingView widget */
+    min-height: 350px; /* Ensure minimum height */
+    margin: -1px; /* Prevent potential 1px gap */
+    transition: background-color 0.4s ease, box-shadow 0.4s ease; /* Added transition */
+}
+body.dark-mode #chart-container {
+    background: var(--gray-200-dark); /* Dark background for chart container */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+#tradingview-widget {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Footer Nav */
+.bottom-nav-bar { /* Styles for the bottom bar */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 65px;
+    background-color: #ffffff;
+    border-top: none; /* Remove top border */
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-around; /* Distribute items evenly */
+    align-items: center;
+    padding: 0 10px;
+    box-sizing: border-box;
+    z-index: 300;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+body.dark-mode .bottom-nav-bar {
+    background-color: var(--gray-200-dark);
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.bottom-nav-bar button { /* General style for bottom buttons */
+    background: transparent;
+    border: none;
+    color: #6c757d; /* Default icon color */
+    font-size: 1.8rem; /* Icon size */
+    cursor: pointer;
+    padding: 10px 15px; /* Generous tap area */
+    border-radius: 50%; /* Round tap effect */
+    transition: background-color 0.25s ease, color 0.25s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1); /* Added bouncy transition */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 1 auto; /* Don't grow, allow shrink */
+    min-width: 50px; /* Minimum width */
+    text-align: center;
+    line-height: 1; /* Align icon vertically */
+}
+
+/* Hover effects for bottom buttons */
+.bottom-nav-bar button:hover {
+    background-color: rgba(0, 0, 0, 0.05); /* Subtle background on hover */
+    color: var(--gray-800-light); /* Darken icon */
+    transform: scale(1.1); /* Slight zoom */
+}
+body.dark-mode .bottom-nav-bar button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--gray-100-light); /* Lighten icon */
+}
+.bottom-nav-bar button:active {
+    transform: scale(0.95); /* Push down effect */
+    transition-duration: 0.1s;
+}
+
+/* Styles for specific bottom buttons */
+#nav-load-chart {
+    color: #dc3545; /* Red color for 'random' */
+    font-size: 2rem; /* Slightly larger */
+}
+#nav-load-chart:hover {
+    color: #a71d2a; /* Darker red */
+    background-color: rgba(220, 53, 69, 0.1);
+}
+body.dark-mode #nav-load-chart {
+    color: #f0627b; /* Lighter red for dark mode */
+}
+body.dark-mode #nav-load-chart:hover {
+    color: #e23d5b;
+    background-color: rgba(240, 98, 123, 0.15);
+}
+
+.bottom-nav-bar button#nav-auto-flip.active {
+    color: var(--accent-color-light); /* Blue when active */
+    background-color: rgba(0, 123, 255, 0.1);
+}
+body.dark-mode .bottom-nav-bar button#nav-auto-flip.active {
+    color: var(--accent-color-dark); /* Lighter blue when active */
+    background-color: rgba(30, 144, 255, 0.15);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    header.top-bar {
+        height: 45px;
+        padding: 0 10px;
+    }
+    #hub-link {
+        font-size: 0.75rem;
+        padding: 5px 10px;
+        gap: 4px;
+    }
+    #hub-link svg {
+        width: 12px;
+        height: 12px;
+    }
+    .header-title {
+        font-size: 1.0rem; /* Adjusted size */
+        margin: 0 5px;
+    }
+    #nav-theme {
+        font-size: 1.3rem;
+        padding: 5px;
+        margin-left: 3px;
+    }
+
+    /* History sidebar, container, chart */
+    #history-sidebar {
+        top: 45px; /* Align below smaller header */
+        width: 240px;
+        transform: translateX(-240px);
+        height: calc(100% - 45px - 60px); /* Adjust height */
+        padding: 10px;
+    }
+    .container {
+        margin-top: 45px; /* Align below smaller header */
+        padding: 10px;
+        padding-bottom: 75px; /* Space for smaller bottom nav */
+    }
+    #chart-container {
+        min-height: 300px;
+        border-radius: 10px;
+    }
+    /* Bottom nav styles */
+    .bottom-nav-bar {
+        height: 60px;
+        padding: 0 5px;
+    }
+    .bottom-nav-bar button {
+        font-size: 1.6rem;
+        padding: 8px 12px;
+        min-width: 45px;
+    }
+    #nav-load-chart {
+        font-size: 1.8rem;
+    }
+}
+@media (max-width: 400px) {
+    #hub-link {
+        padding: 5px 8px;
+        font-size: 0.7rem;
+    }
+    .header-title {
+        font-size: 0.9rem;
+        margin: 0 3px;
+    }
+    #nav-theme {
+        font-size: 1.2rem;
+        padding: 4px;
+    }
+     #sidebar-list li {
+        padding: 8px 6px; /* Slightly reduce padding */
+     }
+     .star {
+        font-size: 1.2rem; /* Slightly smaller star */
+     }
+}
+
+/* Add styles for error message if needed */
+p.error-message {
+    text-align: center;
+    padding: 20px;
+    color: red;
+    font-weight: bold;
+}
